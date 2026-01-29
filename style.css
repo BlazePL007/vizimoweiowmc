@@ -1,0 +1,539 @@
+body{
+    font-family: 'Segoe UI', sans-serif;
+    margin:0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color:#333
+}
+
+html, body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#content {
+    flex: 1 0 auto; /* wypełnia wolną przestrzeń i spycha footer na dół */
+}
+
+footer {
+    flex-shrink: 0; /* footer nie kurczy się */
+}
+
+.header{
+    background-color: #2c3e50;
+    color: white;
+    padding: 1em;
+    text-align: center;
+}
+
+footer{
+    background-color: #2c3e50;
+    color: white;
+    padding: 1em;
+    text-align: center;
+}
+
+footer a {
+    color: #1abc9c;              /* jasny turkus – pasuje do ciemnego tła */
+    margin: 0 10px;
+    text-decoration: none;       /* usuwa podkreślenie */
+    font-weight: bold;
+    transition: color 0.3s ease; /* płynna animacja koloru */
+}
+
+footer a:hover {
+    color: #16f4d0;              /* jaśniejszy kolor po najechaniu */
+    text-decoration: underline;  /* można dodać podkreślenie przy hover */
+}
+
+footer a:visited {
+    color: #1abc9c;              /* ten sam kolor co normalnie, żeby nie znikało */
+}
+
+
+.header nav{
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap:0.4em;
+}
+
+.header nav button {
+    background: transparent;
+    color: white;
+    border: 1px solid transparent;
+    padding: 0.4em 0.8em;
+    font-size: 1.2em;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.header nav button:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.header nav button:active {
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+.section{
+    padding:2em;
+    margin:auto;
+    max-width: 1200px;
+}
+
+.section h2{
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 0.3em;
+    color:#2c3e50;
+}
+
+.info-list li, discipline-list li{
+    margin:0.5em 0;
+}
+
+ul ul{
+    margin-top: 0.5em;
+    padding-left: 1.5em;
+}
+
+.countries{
+    overflow-x: auto;
+}
+
+.country-table{
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2em;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.country-table th{
+    background-color: #3498db;
+    color: white;
+    padding: 0.75em;
+    text-align: center;
+    font-size: 1.1em;
+}
+
+.country-table td{
+    vertical-align: top;
+    padding: 1em;
+}
+
+.country-table ul{
+    list-style: none;
+    padding-left: 0;
+}
+
+.country-table li{
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.4em;
+}
+
+.info-list li img{
+   margin-right: 0.5em;
+    border:1px solid #ccc;
+    border-radius: 3px; 
+}
+
+.country-table img{
+    margin-right: 0.5em;
+    border:1px solid #ccc;
+    border-radius: 3px;
+}
+
+.venue-table{
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top:1.5em;
+}
+
+.venue-table th{
+    background-color: #3498db;
+    color: white;
+    padding: 0.75em 1em;
+    text-align: left;
+    font-size: 1.05em;
+}
+
+.venue-table td{
+    padding: 0.75em 1em;
+    border-top: 1px solid #e0e0e0;
+    vertical-align: top;
+}
+
+.venue-table tr:nth-child(even){
+    background-color: #eaf4fc;
+}
+
+.venue-table tr:hover {
+    background-color: #eaf4fc;
+    transition: background-color 0.2s ease;
+}
+
+section.harmonogram{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75em 1em;
+    text-align: center;
+}
+
+section#harmonogram{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75em 1em;
+    text-align: center;
+}
+
+
+.date{
+    font-size: 1.05em;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+}
+
+ul.list{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-width: 500px;
+    width:100%;
+}
+
+.item{
+    display:flex;
+    justify-content: space-between;
+    padding: 12px 18px;
+    margin-bottom: 10px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sport{
+    font-weight: 600;
+}
+
+.status{
+    color: #555;
+    font-size: 0.9rem;
+}
+
+table.kalendarz{
+    border-collapse: collapse;
+    text-align: center;
+    font-size: 14px;
+    width: 100%;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 1.5em;
+}
+
+table.kalendarz th,table.kalendarz td{
+    border: 1px solid #ccc;
+    padding: 4px 6px;
+    font-size: 1.05em;
+}
+
+table.kalendarz th{
+    background-color: #3498db;
+    color: white;
+}
+
+.otwarcie{
+    background: rgb(32, 212, 32);
+}
+
+.medale{
+    background: orange;
+}
+
+.zakonczenie{
+    background: red;
+}
+
+.zawody{
+    background: lightskyblue;
+}
+
+.finaly{
+    background: yellow;
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* proporcje 16:9 */
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    background: #000;
+    margin-top: 1em;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 8px;
+}
+
+.mascot-image img{
+    max-width: 100%;
+    width:100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 1.5em;
+}
+
+#medal-table{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.75em 1em;
+}
+
+.medal-table{
+    border-collapse: collapse;
+    text-align: center;
+    width: 100%;
+    background-color:white;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+    margin-top:1.5em;
+}
+
+.medal-table th, .medal-table td{
+    border:1px solid #ccc;
+    padding:0.75em 1em;
+    font-size: 1.05em;
+}
+
+.medal-table img{
+    margin-right: 0.5em;
+    border:1px solid #ccc;
+    border-radius: 3px;
+}
+
+.medal-table td{
+    border-bottom: none;
+}
+
+.medal-table th{
+    background-color:#3498db;
+    color:white
+}
+
+.medal-table td:nth-child(3){
+    background-color:gold;
+}
+
+.medal-table td:nth-child(4){
+    background-color:silver;
+}
+
+.medal-table td:nth-child(5){
+    background-color:#977547;
+}
+
+#record-table{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:0.75em 1em;
+}
+
+.record-table{
+    border-collapse:collapse;
+    width:100%;
+    background-color:white;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+    margin-top:1.5em;
+}
+
+.record-table img{
+    margin-right: 0.5em;
+    border:1px solid #ccc;
+    border-radius: 3px;
+}
+
+.record-table th, .record-table td{
+    border:1px solid #ccc;
+    padding:0.75em 1em;
+    font-size:1.05em;
+}
+
+.record-table th{
+    background-color:#3498db;
+    color:white
+}
+
+.details-row {
+  background: #fafafa;
+}
+
+.details-content {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.4s ease;
+}
+
+.details-row.open .details-content {
+    border-top: 1px solid #ccc;
+  max-height: 500px; /* wystarczająco dużo, żeby pomieściło listę */
+  opacity: 1;
+}
+
+.details-row td {
+    border-top: none;
+    padding: 0; /* usuwa domyślne paddingi, żeby animacja mogła schować wiersz całkowicie */
+}
+
+/* .hidden {
+  display: none;
+} */
+
+.player-row {
+  cursor: pointer;
+}
+
+.details-row ul {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap; /* jak się nie mieści w jednym rzędzie, zawija */
+  gap: 10px; /* odstęp między medalami */
+  padding: 8px;
+  margin: 0;
+  list-style: none;
+}
+
+.details-row li {
+  /* background: #eee; */
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 0.9em;
+}
+
+.loading{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 30vh;
+    gap:60px;
+}
+
+.rings{
+    position: relative;
+    width: 140px;
+    height: 140px;
+}
+
+.rings::before{
+    content: "";
+    position: absolute;
+    left:50%;
+    top:50%;
+    width: 10px;
+    height: 10px;
+    transform: translate(-50%, -50%);
+    box-shadow: 
+        32px 0px 0 0 #1e6fe0,
+        10px -30px 0 0 #f3c434,
+        -26px -20px 0 0 #222222,
+        -26px 20px 0 0 #28b463,
+        10px 30px 0 0 #e74c3c;
+    animation: spin 1.4s linear infinite;
+    image-rendering: pixelated;     
+}
+
+@keyframes spin{
+      to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.torch{
+      position: relative;
+      width: 16px; /* szerokość 2 pikseli */
+      height: 64px; /* wysokość drewna */
+    }
+
+    /* drewno 2x8 pikseli */
+    .torch::before{
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 8px;
+      height: 8px;
+      background: #6b4b2a;
+      /* każdy cień = jeden piksel */
+      box-shadow:
+        8px   0px #7d5630,
+        0px  -8px #8b5e33,
+        8px  -8px #5a3b1d,
+        0px -16px #7d5630,
+        8px -16px #6b4b2a,
+        0px -24px #5a3b1d,
+        8px -24px #8b5e33,
+        0px -32px #6b4b2a,
+        8px -32px #7d5630,
+        0px -40px #8b5e33,
+        8px -40px #5a3b1d,
+        0px -48px #7d5630,
+        8px -48px #6b4b2a,
+        0px -56px #8b5e33,
+        8px -56px #5a3b1d;
+      image-rendering: pixelated;
+    }
+
+    /* ogień 2x2 piksele */
+    .torch::after{
+      content: "";
+      position: absolute;
+      bottom: 64px; /* nad drewnem */
+      left: 0;
+      width: 8px;
+      height: 8px;
+      background: #ff9933;
+      box-shadow:
+        8px 0px #ffd633,
+        0px -8px #fff176,
+        8px -8px #ffa31a;
+      animation: flicker 0.6s infinite;
+    }
+
+    @keyframes flicker{
+      0%,100%{ transform: scale(1); opacity: 1; }
+      50%{ transform: scale(1.2); opacity: 0.85; }
+    }
+
+.GOLD{
+    background-color:gold;
+}
+
+.SILVER{
+    background-color:silver;
+}
+
+.BRONZE{
+    background-color:#977547;
+}
