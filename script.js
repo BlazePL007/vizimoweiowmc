@@ -1,10 +1,10 @@
-const sheetUrl = 'https://docs.google.com/spreadsheets/u/0/d/e/2PACX-1vQ5S2B50uLXxdeKPCZKJHmC2xRA2SD-sUxC_qtivRPhvX2JTYQvvyNZhZ4yYtpDHB-3KmcPEpy-DoWv/pubhtml/sheet?headers=false&gid=0';
+const sheetUrl = 'https://docs.google.com/spreadsheets/u/0/d/e/2PACX-1vQhrlZDrLt4pv4scqpmpenVh1SWtE2kHhkrWuW-K89pCeBmuUV1ImTooATtySwucBSsRkCIJT-NL6Tn/pubhtml/sheet?headers=false&gid=0';
 
-const sheetUrl2 = 'https://docs.google.com/spreadsheets/u/0/d/e/2PACX-1vQ5S2B50uLXxdeKPCZKJHmC2xRA2SD-sUxC_qtivRPhvX2JTYQvvyNZhZ4yYtpDHB-3KmcPEpy-DoWv/pubhtml/sheet?headers=false&gid=635160100';
+const sheetUrl2 = 'https://docs.google.com/spreadsheets/u/0/d/e/2PACX-1vQhrlZDrLt4pv4scqpmpenVh1SWtE2kHhkrWuW-K89pCeBmuUV1ImTooATtySwucBSsRkCIJT-NL6Tn/pubhtml/sheet?headers=false&gid=1468137836';
 
-const sheetUrl3 = 'https://docs.google.com/spreadsheets/u/0/d/e/2PACX-1vQ5S2B50uLXxdeKPCZKJHmC2xRA2SD-sUxC_qtivRPhvX2JTYQvvyNZhZ4yYtpDHB-3KmcPEpy-DoWv/pubhtml/sheet?headers=false&gid=287910486';
+const sheetUrl3 = 'https://docs.google.com/spreadsheets/u/0/d/e/2PACX-1vQhrlZDrLt4pv4scqpmpenVh1SWtE2kHhkrWuW-K89pCeBmuUV1ImTooATtySwucBSsRkCIJT-NL6Tn/pubhtml/sheet?headers=false&gid=570204050';
 
-const sheetUrl4 = 'https://docs.google.com/spreadsheets/u/0/d/e/2PACX-1vQ5S2B50uLXxdeKPCZKJHmC2xRA2SD-sUxC_qtivRPhvX2JTYQvvyNZhZ4yYtpDHB-3KmcPEpy-DoWv/pubhtml/sheet?headers=false&gid=617580620';
+const sheetUrl4 = 'https://docs.google.com/spreadsheets/u/0/d/e/2PACX-1vQhrlZDrLt4pv4scqpmpenVh1SWtE2kHhkrWuW-K89pCeBmuUV1ImTooATtySwucBSsRkCIJT-NL6Tn/pubhtml/sheet?headers=false&gid=2023446293';
 
 const countryFlags = {
   "Czad" :"https://flagcdn.com/td.svg",
@@ -59,30 +59,21 @@ const countryFlags = {
 };
 
 const kalendarzDef = [
-  { dyscyplina: "Boks", sub:[]},
-  { dyscyplina: "Gimnastyka", sub:["Skoki", "Sportowa"]},
-  { dyscyplina: "Hokej na trawie", sub:[]},
-  { dyscyplina: "Jeździectwo", sub:[]},
-  { dyscyplina: "Kajakarstwo", sub:["Górskie", "Klasyczne"]},
-  { dyscyplina: "Kolarstwo", sub:["Górskie", "Torowe", "Szosowe"]},
-  { dyscyplina: "Lekkoatletyka", sub:[]},
-  { dyscyplina: "Łucznictwo", sub:[]},
-  { dyscyplina: "Pięciobój nowoczesny", sub:[]},
-  { dyscyplina: "Piłka nożna", sub:[]},
-  { dyscyplina: "Piłka wodna", sub: [] },
-  { dyscyplina: "Pływanie", sub: [] },
-  { dyscyplina: "Skoki do wody", sub: [] },
-  { dyscyplina: "Strzelectwo", sub: [] },
-  { dyscyplina: "Szermierka", sub: [] },
-  { dyscyplina: "Triathlon", sub: [] },
-  { dyscyplina: "Wioślarstwo", sub: [] },
-  { dyscyplina: "Zapasy", sub: [] },
-  { dyscyplina: "Żeglarstwo", sub: [] },
-  { dyscyplina: "Sporty wspinaczkowe", sub: [] },
-  { dyscyplina: "Bule", sub: [] },
-  { dyscyplina: "Karting", sub: [] },
-  { dyscyplina: "Sporty lotnicze", sub: [] },
-  { dyscyplina: "Futbol flagowy", sub: [] }
+  { dyscyplina: "Biathlon", sub:[]},
+  { dyscyplina: "Biegi Narciarskie", sub:[]},
+  { dyscyplina: "Bobsleje", sub:[]},
+  { dyscyplina: "Curling", sub:[]},
+  { dyscyplina: "Hokej na lodzie", sub:[]},
+  { dyscyplina: "Kombinacja norweska", sub:[]},
+  { dyscyplina: "Łyżwiarstwo Figurowe", sub:[]},
+  { dyscyplina: "Łyżwiarstwo szybkie", sub:[]},
+  { dyscyplina: "Narciarstwo alpejskie", sub:[]},
+  { dyscyplina: "Narciarstwo dowolne", sub:[]},
+  { dyscyplina: "Saneczkarstwo", sub: [] },
+  { dyscyplina: "Short track", sub: [] },
+  { dyscyplina: "Skeleton", sub: [] },
+  { dyscyplina: "Skoki narciarskie", sub: [] },
+  { dyscyplina: "Snowboard", sub: [] }
 ];
 
 async function preloadSheetData() {
@@ -498,12 +489,12 @@ function renderCalender (data, sectionName){
 function generowanie_Naglowka(data){
 
   const months = {
-    "sierpnia": 8,
-    "września": 9,
+    "lutego": 2,
+    "marca": 3,
   };
   const monthNames = {
-    8: "Sierpień",
-    9: "Wrzesień",
+    2: "Luty",
+    3: "Marzec",
   };
   const days = ["Nd.", "Pn.", "Wt.", "Śr.", "Cz.", "Pt.", "Sb."];
 
