@@ -397,7 +397,7 @@ async function loadHarmonogram(sheetUrl4){
       let typ = cells[2].textContent.trim();
       let sport = cells[3].textContent.trim();
       let status = cells[4].textContent.trim();
-      let komentarz = cells[5].textContent.trim();
+      let komentarz = cells[5]?.textContent.trim();
 
       if(!harmonogram[data])
         harmonogram[data] = {
@@ -489,8 +489,8 @@ function renderCalender (data, sectionName){
 function generowanie_Naglowka(data){
 
   const months = {
-    "lutego": 2,
-    "marca": 3,
+    "luty": 2,
+    "marzec": 3,
   };
   const monthNames = {
     2: "Luty",
@@ -530,7 +530,7 @@ function generowanie_Naglowka(data){
   let header2 = "<tr>";
   sortedDates.forEach(date => {
     const [day, month] = date.split(" ");
-    const dateObj = new Date(2025, months[month] - 1, parseInt(day, 10));
+    const dateObj = new Date(2026, months[month] - 1, parseInt(day, 10));
     const weekday = days[dateObj.getDay()];
     header2 += `<th>${day}<br>${weekday}</th>`;
   });
