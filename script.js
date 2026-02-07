@@ -60,12 +60,12 @@ const countryFlags = {
 
 const kalendarzDef = [
   { dyscyplina: "Biathlon", sub:[]},
-  { dyscyplina: "Biegi Narciarskie", sub:[]},
+  { dyscyplina: "Biegi narciarskie", sub:[]},
   { dyscyplina: "Bobsleje", sub:[]},
   { dyscyplina: "Curling", sub:[]},
   { dyscyplina: "Hokej na lodzie", sub:[]},
   { dyscyplina: "Kombinacja norweska", sub:[]},
-  { dyscyplina: "Łyżwiarstwo Figurowe", sub:[]},
+  { dyscyplina: "Łyżwiarstwo figurowe", sub:[]},
   { dyscyplina: "Łyżwiarstwo szybkie", sub:[]},
   { dyscyplina: "Narciarstwo alpejskie", sub:[]},
   { dyscyplina: "Narciarstwo dowolne", sub:[]},
@@ -490,7 +490,7 @@ function generowanie_Naglowka(data){
 
   const months = {
     "luty": 2,
-    "marzec": 3,
+    "marca": 3,
   };
   const monthNames = {
     2: "Luty",
@@ -575,7 +575,7 @@ function generowanie_Naglowka(data){
               fCount = typ.filter(e => e === "F").length;
               allF +=fCount
             }
-            zawody += `<td class="${ceremonieClasses[typ[0]]}">${fCount>0?fCount:""}</td>`;
+            zawody += `<td class="${ceremonieClasses[typ[typ.length - 1]]}">${fCount>0?fCount:""}</td>`;
           } else {
             zawody += "<td></td>";
           }}
