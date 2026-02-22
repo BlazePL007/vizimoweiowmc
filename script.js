@@ -79,7 +79,8 @@ const countryFlags = {
   "Zimbabwe":"https://flagcdn.com/zw.svg",
   "Kazachstan":"https://flagcdn.com/kz.svg",
   "Islandia":"https://flagcdn.com/is.svg",
-  "Rumunia":"https://flagcdn.com/ro.svg"
+  "Rumunia":"https://flagcdn.com/ro.svg",
+  "Lichtenstein":"https://flagcdn.com/li.svg"
 };
 
 const short_country = {
@@ -153,7 +154,8 @@ const short_country = {
   "ZIM":"Zimbabwe",
   "KAZ":"Kazachstan",
   "ISL":"Islandia",
-  "ROM":"Rumunia"
+  "ROM":"Rumunia",
+  "LIE":"Lichtenstein"
 };
 
 const kalendarzDef = [
