@@ -6,6 +6,8 @@ const sheetUrl3 = 'https://docs.google.com/spreadsheets/u/0/d/e/2PACX-1vQhrlZDrL
 
 const sheetUrl4 = 'https://docs.google.com/spreadsheets/u/0/d/e/2PACX-1vQhrlZDrLt4pv4scqpmpenVh1SWtE2kHhkrWuW-K89pCeBmuUV1ImTooATtySwucBSsRkCIJT-NL6Tn/pubhtml/sheet?headers=false&gid=2023446293';
 
+const sheetUrl5 = 'https://docs.google.com/spreadsheets/u/0/d/e/2PACX-1vQhrlZDrLt4pv4scqpmpenVh1SWtE2kHhkrWuW-K89pCeBmuUV1ImTooATtySwucBSsRkCIJT-NL6Tn/pubhtml/sheet?headers=false&gid=2047110984';
+
 const countryFlags = {
   "Czad" :"https://flagcdn.com/td.svg",
   "Madagaskar":"https://flagcdn.com/mg.svg",
@@ -55,7 +57,103 @@ const countryFlags = {
   "Argentyna":"https://flagcdn.com/ar.svg",
   "Brazylia":"https://flagcdn.com/br.svg",
   "Chile":"https://flagcdn.com/cl.svg",
-  "Reprezentacja Uchodźców": "https://upload.wikimedia.org/wikipedia/commons/a/a7/Olympic_flag.svg"
+  "Reprezentacja Uchodźców": "https://upload.wikimedia.org/wikipedia/commons/a/a7/Olympic_flag.svg",
+  "Republika Zielonego Przylądka":"https://flagcdn.com/cv.svg",
+  "Bułgaria":"https://flagcdn.com/bg.svg",
+  "Chorwacja":"https://flagcdn.com/hr.svg",
+  "Jamajka":"https://flagcdn.com/jm.svg",
+  "Sierra Leone":"https://flagcdn.com/sl.svg",
+  "Wenezuela":"https://flagcdn.com/ve.svg",
+  "Boliwia":"https://flagcdn.com/bo.svg",
+  "Mongolia":"https://flagcdn.com/mn.svg",
+  "San Marino":"https://flagcdn.com/sm.svg",
+  "Zjednoczone Emiraty Arabskie":"https://flagcdn.com/ae.svg",
+  "Senegal":"https://flagcdn.com/sn.svg",
+  "Hong Kong":"https://flagcdn.com/hk.svg",
+  "Erytrea":"https://flagcdn.com/er.svg",
+  "Australia":"https://flagcdn.com/au.svg",
+  "Monako":"https://flagcdn.com/mc.svg",
+  "Arabia Saudyjska":"https://flagcdn.com/sa.svg",
+  "Łotwa":"https://flagcdn.com/lv.svg",
+  "Niezależni Sportowcy Olimpijscy":"https://upload.wikimedia.org/wikipedia/commons/a/a7/Olympic_flag.svg",
+  "Zimbabwe":"https://flagcdn.com/zw.svg",
+  "Kazachstan":"https://flagcdn.com/kz.svg",
+  "Islandia":"https://flagcdn.com/is.svg",
+  "Rumunia":"https://flagcdn.com/ro.svg"
+};
+
+const short_country = {
+  "CHA":"Czad",
+  "MAD":"Madagaskar",
+  "NIG":"Niger",
+  "NGR":"Nigeria",
+  "ALB":"Albania",
+  "AUT":"Austria",
+  "BEL":"Belgia",
+  "CZE":"Czechy",
+  "DEN":"Dania",
+  "EST":"Estonia",
+  "FIN":"Finlandia",
+  "FRA":"Francja",
+  "GRE":"Grecja",
+  "ESP":"Hiszpania",
+  "IRL":"Irlandia",
+  "KOS":"Kosowo",
+  "MLT":"Malta",
+  "GER":"Niemcy",
+  "NED":"Niderlandy",
+  "NOR":"Norwegia",
+  "POL":"Polska",
+  "POR":"Portugalia",
+  "SRB":"Serbia",
+  "SUI":"Szwajcaria",
+  "SWE":"Szwecja",
+  "TUR":"Turcja",
+  "HUN":"Węgry",
+  "GBR":"Wielka Brytania",
+  "ITA":"Włochy",
+  "WAT":"Watykan",
+  "AFG":"Afganistan",
+  "JPN":"Japonia",
+  "QAT":"Katar",
+  "KOR":"Korea Południowa",
+  "PRK":"Korea Północna",
+  "NEP":"Nepal",
+  "THA":"Tajlandia",
+  "IVB":"Brytyjskie Wyspy Dziewicze",
+  "GRN":"Grenada",
+  "CAN":"Kanada",
+  "MEX":"Meksyk",
+  "NCA":"Nikaragua",
+  "USA":"Stany Zjednoczone",
+  "ISV":"Wyspy Dziewicze Stanów Zjednoczonych",
+  "NZL":"Nowa Zelandia",
+  "ARG":"Argentyna",
+  "BRA":"Brazylia",
+  "CHI":"Chile",
+  "EOR":"Reprezentacja Uchodźców",
+  "CPV":"Republika Zielonego Przylądka",
+  "BUL":"Bułgaria",
+  "CRO":"Chorwacja",
+  "JAM":"Jamajka",
+  "SLE":"Sierra Leone",
+  "VEN":"Wenezuela",
+  "BOL":"Boliwia",
+  "MGL":"Mongolia",
+  "SMR":"San Marino",
+  "UAE":"Zjednoczone Emiraty Arabskie",
+  "SEN":"Senegal",
+  "HKG":"Hong Kong",
+  "ERI":"Erytrea",
+  "AUS":"Australia",
+  "MON":"Monako",
+  "KSA":"Arabia Saudyjska",
+  "LAT":"Łotwa",
+  "IOA":"Niezależni Sportowcy Olimpijscy",
+  "ZIM":"Zimbabwe",
+  "KAZ":"Kazachstan",
+  "ISL":"Islandia",
+  "ROM":"Rumunia"
 };
 
 const kalendarzDef = [
@@ -320,7 +418,17 @@ async function loadRecords(sheetUrl3) {
       let rekord = cells[5]?.textContent.trim();
       let jednostka = cells[6]?.textContent.trim();
 
-      let country = window.playerCountryMap[zawodnik] || "Nieznany kraj";
+      let country = window.playerCountryMap[zawodnik] || null;
+
+      if(!country){
+        const match = zawodnik.match(/^(.*?)\s*\(([A-Z]{3})\)$/);
+        if(match){
+          zawodnik = match[1].trim()
+          country = short_country[match[2]] || "Nieznany kraj";
+        } else{
+          "Nieznany kraj"
+        }
+      }
 
       if(!records[`${Dyscyplina} ${konkurencja}`])
         records[`${Dyscyplina} ${konkurencja}`] = {
@@ -372,6 +480,93 @@ function renderRecordTable(data, sectionName) {
     </tbody>
   `;
 
+  container.appendChild(table);
+  cache[sectionName] = dom.body.innerHTML;
+}
+
+
+async function loadMasters(sheetUrl5) {
+  try{
+    const res = await fetch(sheetUrl5);
+    const htmlText = await res.text();
+    
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(htmlText,'text/html');
+    
+    const rows = Array.from(doc.querySelectorAll('table tr'));
+    
+    let masters = {}
+
+    rows.forEach(row=>{
+      const cells = row.querySelectorAll('td');
+      if (cells.length >= 2) {
+        let Dyscyplina = cells[0].textContent.trim();
+        let konkurencja = cells[1].textContent.trim();
+        let zawodnik = cells[2].textContent.trim();
+
+        let country = window.playerCountryMap[zawodnik] || null;
+
+        if(!country){
+          const match = zawodnik.match(/^(.*?)\s*\(([A-Z]{3})\)$/);
+          if(match){
+            zawodnik = match[1].trim()
+            country = short_country[match[2]] || "Nieznany kraj";
+          } else{
+            "Nieznany kraj"
+          }
+        }
+
+        if(!masters[Dyscyplina])
+          masters[Dyscyplina] = {
+                Dyscyplina,
+                konkurencje:{}
+              }
+        
+        if(!masters[Dyscyplina].konkurencje[konkurencja])
+          masters[Dyscyplina].konkurencje[konkurencja] = {
+            konkurencja,
+            zawodnicy:[]    
+          }
+
+        if(zawodnik)
+          masters[Dyscyplina].konkurencje[konkurencja].zawodnicy.push(`${countryFlags[country] ? `<img src="${countryFlags[country]}" width="30">`: ""}${country}(${zawodnik})`)
+      }
+    });
+
+    console.log(masters);
+
+    renderMasterTable(Object.values(masters),"mistrzowie")
+  }catch(error){
+    console.error("Błąd podczas ładowania mistrzów:", error);
+  }
+  
+}
+
+function renderMasterTable(data,sectionName){
+  const dom = new DOMParser().parseFromString(cache[sectionName],"text/html");
+  const container = dom.getElementById("masters-table");
+  container.innerHTML = "";
+  let table = dom.createElement("table");
+  table.className = "masters-table";
+  table.innerHTML = `
+    <thead>
+      <tr>
+        <th>Dyscyplina</th>
+        <th>Konkurencja</th>
+        <th>Mistrzowie z V Zimowych Igrzysk Olimpijskich</th>
+      </tr>
+    </thead>
+    <tbody>
+      ${data.map(row => `
+        <tr>
+          <td rowspan = "${Object.keys(row.konkurencje).length}"><img src="${row.Dyscyplina}.png" width="50" style="vertical-align: middle;">${row.Dyscyplina}</td>
+          ${Object.keys(row.konkurencje).map(konkurencja =>`
+            <td>${konkurencja}</td>
+            <td>${row.konkurencje[konkurencja].zawodnicy.map(zawodnik =>zawodnik).join("<br>")}</td>
+            `).join("</tr><tr>")}
+        `).join("")}
+    </tbody>
+  `;
   container.appendChild(table);
   cache[sectionName] = dom.body.innerHTML;
 }
@@ -443,8 +638,6 @@ async function loadHarmonogram(sheetUrl4){
       }
       }
     });
-    console.log("Kalendarz:")
-    console.log(kalendarz);
     renderHarmonogramlist(Object.values(harmonogram),"harmonogram");
     renderCalender(kalendarz, "harmonogram");
   }catch(error){
@@ -560,7 +753,6 @@ function generowanie_Naglowka(data){
   let zawody="";
   kalendarzDef.forEach(d => {
     const dyscyplina = d.dyscyplina;
-    console.log(dyscyplina)
     const suby = d.sub;
     if (suby.length === 0) {
       let allF = 0;
@@ -568,7 +760,6 @@ function generowanie_Naglowka(data){
       zawody += `<tr><td colspan="2">${dyscyplina}</td>`;
         sortedDates.forEach(date =>{
         const typ = data[dyscyplina]?.null[date]; // np. "O", "M", "Z"
-        console.log(typ);
           if (typ) {
             let fCount = 0;
             if (Array.isArray(typ)) {
@@ -651,10 +842,11 @@ function generowanie_Naglowka(data){
 }
 
 async function init() {
-  await preloadSections(["wstęp", "dyscypliny", "panstwa", "symbole", "medale", "rekordy", "obiekty", "harmonogram", "zaprzyjaźnieni"]);
+  await preloadSections(["wstęp", "dyscypliny", "panstwa", "symbole", "medale", "rekordy","mistrzowie", "obiekty", "harmonogram", "zaprzyjaźnieni"]);
   await preloadSheetData();
   await loadMedals(sheetUrl2);
   await loadRecords(sheetUrl3);
+  await loadMasters(sheetUrl5);
   await loadHarmonogram(sheetUrl4);
   await loadSection("wstęp")
 }
