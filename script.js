@@ -187,13 +187,19 @@ async function preloadSheetData() {
     const rows = Array.from(doc.querySelectorAll('table tr'));
     const dataMap = new Map();
 
+    var zawodnicy = 0;
+    var deb = 0;
+
     rows.forEach(row => {
       const cells = row.querySelectorAll('td');
       if (cells.length >= 2) {
         let country = cells[0].textContent.trim();
         let note = cells[1].textContent.trim();
         let debiut = cells[2] ? cells[2].textContent.trim() : '';
-
+        zawodnicy++;
+        if (debiut !== '') {
+          deb++;
+        }
         if (country && note) {
           let fullNote = note;
           if (debiut) {
@@ -218,6 +224,8 @@ async function preloadSheetData() {
           const allNotes = dataMap.get(country).join(', ');
           span.innerHTML = `${country}<br>(${allNotes})`;
         }
+        if (span.id === "ilosc") span.innerHTML += `${zawodnicy}`;
+        if (span.id === "debiuty") span.innerHTML += `${deb}`;
       });
       // zapisujemy zmodyfikowany HTML z powrotem do cache
       cache[name] = dom.body.innerHTML;
