@@ -177,10 +177,22 @@ const kalendarzDef = [
   { dyscyplina: "Snowboard", sub: [] }
 ];
 
+let data = null;
+
+async function loads() {
+  let urls = [sheetUrl, sheetUrl2, sheetUrl3, sheetUrl4, sheetUrl5];
+  const parser = new DOMParser();
+  data = await Promise.all(
+    urls.map(url => fetch(url))
+  );
+  data = await Promise.all(
+    data.map(res => res.text())
+  );
+}
+
 async function preloadSheetData() {
   try {
-    const res = await fetch(sheetUrl);
-    const htmlText = await res.text();
+    const htmlText = data[0];
 
     const parser = new DOMParser();
     const doc = parser.parseFromString(htmlText, 'text/html');
@@ -246,10 +258,9 @@ async function preloadSheetData() {
   }
 }
 
-async function loadMedals(sheetUrl2) {
+async function loadMedals() {
   try{
-    const res = await fetch(sheetUrl2);
-    const htmlText = await res.text();
+    const htmlText = data[1]
 
     const parser = new DOMParser();
     const doc = parser.parseFromString(htmlText, 'text/html');
@@ -374,7 +385,7 @@ function activateMedalTableEvents() {
 }
 
 let actualnapostrona = "";
-const cache = {};
+let cache = {};
 async function loadSection(name) {
   if (actualnapostrona !== name) {
     try {
@@ -397,19 +408,21 @@ async function loadSection(name) {
   }
 }
 
+
 async function preloadSections(names) {
-  for (const name of names) {
+  await Promise.all(
+  names.map(async (name) => {
     if (!cache[name]) {
       const res = await fetch(`${name}.html`);
       cache[name] = await res.text();
     }
-  }
+  })
+  );
 }
 
-async function loadRecords(sheetUrl3) {
+async function loadRecords() {
   try{
-    const res = await fetch(sheetUrl3);
-    const htmlText = await res.text();
+    const htmlText = data[2];
     
     const parser = new DOMParser();
     const doc = parser.parseFromString(htmlText, 'text/html');
@@ -496,10 +509,9 @@ function renderRecordTable(data, sectionName) {
 }
 
 
-async function loadMasters(sheetUrl5) {
+async function loadMasters() {
   try{
-    const res = await fetch(sheetUrl5);
-    const htmlText = await res.text();
+    const htmlText = data[4];
     
     const parser = new DOMParser();
     const doc = parser.parseFromString(htmlText,'text/html');
@@ -582,10 +594,9 @@ function renderMasterTable(data,sectionName){
   cache[sectionName] = dom.body.innerHTML;
 }
 
-async function loadHarmonogram(sheetUrl4){
+async function loadHarmonogram(){
   try{
-    const res = await fetch(sheetUrl4);
-    const htmlText = await res.text();
+    const htmlText = data[3];
     
     const parser = new DOMParser();
     const doc = parser.parseFromString(htmlText, 'text/html');
@@ -853,13 +864,15 @@ function generowanie_Naglowka(data){
 }
 
 async function init() {
-  await preloadSections(["wstęp", "dyscypliny", "panstwa", "symbole", "medale", "rekordy","mistrzowie", "obiekty", "harmonogram", "zaprzyjaźnieni"]);
-  await preloadSheetData();
-  await loadMedals(sheetUrl2);
-  await loadRecords(sheetUrl3);
-  await loadMasters(sheetUrl5);
-  await loadHarmonogram(sheetUrl4);
-  await loadSection("wstęp")
+  preloadSections(["wstęp", "dyscypliny", "panstwa", "symbole", "medale", "rekordy","mistrzowie", "obiekty", "harmonogram", "zaprzyjaźnieni"]);
+  await loads();
+  preloadSheetData();
+  loadMedals();
+  loadRecords();
+  loadMasters();
+  loadHarmonogram();
+  loadSection("wstęp")
+
 }
 
 init();
