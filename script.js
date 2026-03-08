@@ -81,7 +81,8 @@ const countryFlags = {
   "Islandia":"https://flagcdn.com/is.svg",
   "Rumunia":"https://flagcdn.com/ro.svg",
   "Lichtenstein":"https://flagcdn.com/li.svg",
-  "Dominika":"https://flagcdn.com/dm.svg"
+  "Dominika":"https://flagcdn.com/dm.svg",
+  "Timor Wschodni":"https://flagcdn.com/tl.svg"
 };
 
 const short_country = {
